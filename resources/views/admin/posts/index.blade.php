@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Posts</h1>
+        <h1>Posts</h1> <a href="{{ route('admin.posts.create') }}">New Pasta</a> 
     
         <table class="table table-striped table-dark">
             <thead>
@@ -21,7 +21,7 @@
                             <a href="{{ route('admin.posts.show', $post->id) }}">SHOW</a>
                         </td>
                         <td>
-                            <a href="">EDIT</a>
+                            <a href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
                         </td>
                         <td>
                             <a href="">DELETE</a>
