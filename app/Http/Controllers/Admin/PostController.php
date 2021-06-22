@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -28,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view( 'admin.posts.create' );
+        $categories = Category::all();
+
+        return view( 'admin.posts.create', compact('categories') );
     }
 
     /**
@@ -39,6 +42,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=> 'required|unique:post',
+            'content'=> 'required',
+            'category_id'=> 'nullable|exists:categories,id',
+        ],[
+            'required'=> 'The :attribute is required',
+            'unique'=> 'This :attribute is already used',
+            'exists'=> "this :attribute don't exists",
+        ]);
+
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         $new_post = new Post();
@@ -73,7 +86,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view( 'admin.posts.edit', compact('post') );
+        $categories = Category::all();
+
+        return view( 'admin.posts.edit', compact('post', 'categories') );
     }
 
     /**
