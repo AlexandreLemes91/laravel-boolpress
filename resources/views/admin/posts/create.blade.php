@@ -13,13 +13,13 @@
                     <label for="title" class="form-label">Title</label>
                     <input type="text" id="title" name="title" class="form-control">
                     @error('title')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="content">Content</label>
                     <textarea name="content" id="content" class="form-control"></textarea>
                     @error('content')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label class="form-label mt-3" for="category_id">Category</label>
@@ -30,7 +30,7 @@
                         @endforeach
                     </select>
                     @error('category')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <button class="mt-3 btn btn-secondary" type="submit">Create</button>

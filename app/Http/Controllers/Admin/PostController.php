@@ -42,7 +42,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-     /*    $request->validate([
+        $request->validate([
             'title'=> 'required|unique:post',
             'content'=> 'required',
             'category_id'=> 'nullable|exists:categories,id',
@@ -50,7 +50,7 @@ class PostController extends Controller
             'required'=> 'The :attribute is required',
             'unique'=> 'This :attribute is already used',
             'exists'=> "this :attribute don't exists",
-        ]); */
+        ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
