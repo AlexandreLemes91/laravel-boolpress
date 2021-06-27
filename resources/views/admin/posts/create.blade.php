@@ -11,13 +11,13 @@
                     @method('POST')
                     
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" id="title" name="title" class="form-control">
+                    <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}">
                     @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="content">Content</label>
-                    <textarea name="content" id="content" class="form-control"></textarea>
+                    <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
                     @error('content')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -26,7 +26,9 @@
                     <select class="form-control" name="category_id" id="category_id">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"
+                                @if( $category->id == old('category_id')) selected @endif
+                                >{{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('category')

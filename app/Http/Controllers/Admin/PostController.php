@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -100,12 +101,25 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title'=> [
+                'required',
+                Rule::unique('posts')->ignore($post)
+            ],
+            'content'=> 'required',
+            'category_id'=> 'nullable|exists:categories,id',
+        ],[
+            'required'=> 'The :attribute is required',
+            'unique'=> 'This :attribute is already used',
+            'exists'=> "this :attribute don't exists",
+        ]);
+
         $data = $request->all();
 
         $data['slug'] = Str::slug( $data['title'], '-' );
         $post->update( $data );
 
-        return redirect()->route('admin.post.show', $post->id);
+        return redirect()->route('admin.posts.show', $post->id);
 
     }
 

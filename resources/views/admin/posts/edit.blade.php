@@ -6,18 +6,18 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <h2>Edit Post: <em>{{ $post->title }}</em></h1>
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PATCH')
         
                     <label class="form-label mt-3" for="title">Title</label>
-                    <input class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
+                    <input class="form-control" type="text" name="title" id="title" value="{{ old('title', $post->title) }}">
                     @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <label class="form-label mt-3" for="content">Content</label>
-                    <textarea class="form-control" name="content" id="content" cols="10" rows="5">{{ $post->content }}</textarea>
+                    <textarea class="form-control" name="content" id="content" cols="10" rows="5">{{ old('content', $post->content) }}</textarea>
                     @error('content')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -26,7 +26,9 @@
                     <select class="form-control" name="category_id" id="category_id">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"
+                                @if( $category->id == old('category_id', $post->category_id)) selected @endif
+                                >{{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('category')

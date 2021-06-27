@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.welcome');
-});
 
 //AUTENTICAZIONE
 Auth::routes();
@@ -24,13 +21,18 @@ Auth::routes();
 //Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::prefix('admin')
-    ->namespace('Admin')
-    ->middleware('auth')
-    ->name('admin.')
-    ->group( function(){
-        //rotta home admin
-        Route::get('/', 'HomeController@index')->name('home');
+->namespace('Admin')
+->middleware('auth')
+->name('admin.')
+->group( function(){
+    //rotta home admin
+    Route::get('/', 'HomeController@index')->name('home');
+    
+    //rotta posts
+    Route::resource('/posts', 'PostController');
+});
 
-        //rotta posts
-        Route::resource('/posts', 'PostController');
-    });
+/* GUEST */
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where('any', '.*');

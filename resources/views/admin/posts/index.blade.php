@@ -25,16 +25,16 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
-                            <a class="btn btn-link" href="{{ route('admin.posts.show', $post->id) }}">SHOW</a>
+                            <a href="{{ route('admin.posts.show', $post->id) }}">SHOW</a>
                         </td>
                         <td>
-                            <a class="btn btn-link" href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
+                            <a href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
                         </td>
                         <td>
-                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                            <form class="delete" action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input class="btn btn-link" type="submit" value="Delete">
+                                <input class="p-0 btn btn-link" type="submit" value="Delete">
                             </form>
                         </td>
                     </tr>  
