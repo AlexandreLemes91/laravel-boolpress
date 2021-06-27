@@ -10,7 +10,7 @@ class PostsTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @return voi
      */
     public function run(Faker $faker)
     {

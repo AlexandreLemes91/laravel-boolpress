@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             //nomiSeeder
             CategoriesTableSeeder::class,
             PostsTableSeeder::class,
+            TagsTableSeeder::class,
         ]);
     }
 }

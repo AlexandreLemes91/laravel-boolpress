@@ -2,8 +2,8 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">link1</a></li>
-                <li><a href="#">link2</a></li>
+                <li><router-link :to="{name:'home'}">Home</router-link></li>
+                <li><router-link :to="{name:'blog'}">Blog</router-link></li>
             </ul>
         </nav>
     </header>
@@ -20,5 +20,9 @@ header{
     padding: 20px 0;
     margin-bottom: 30px;
     background-color:lightsteelblue;
+
+    .active{
+        color: red;
+    }
 }
 </style>

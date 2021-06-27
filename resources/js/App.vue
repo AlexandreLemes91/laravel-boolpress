@@ -3,7 +3,7 @@
     <div class="container">
         <Header />
 
-        <h1>Blog</h1>
+       <router-view></router-view>
 
     </div>
 </template>
@@ -16,8 +16,7 @@ export default {
 
     components: {
         Header,
-
-    }
+    },
 }
 </script>
 
@@ -39,6 +38,18 @@ ul{
     li{
         margin: 0 10px;
     }
+}
+
+nav{
+    margin-top: 20px;
+
+    .active{
+        background-color: aquamarine;
+    }
+}
+
+button{
+    padding: 3px;
 }
 
 

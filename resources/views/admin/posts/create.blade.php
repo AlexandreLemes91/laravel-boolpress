@@ -31,9 +31,28 @@
                                 >{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    @error('category')
+                    @error('category_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="mt-3">
+                        <label class="form-label d-block" >Tags</label>
+                        @foreach ($tags as $tag)
+                            <span class="mr-3">
+                                <input type="checkbox"
+                                value="{{ $tag->id }}"
+                                name="tags[]"
+                                id="tag{{ $loop->iteration }}"
+                                @if ( in_array( $tag->id, old('tags', []))) checked @endif>
+                                <label for="tag{{ $loop->iteration }}">
+                                    {{ $tag->name }}
+                                </label>
+                            </span>
+                        @endforeach
+                        @error('tags')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <button class="mt-3 btn btn-secondary" type="submit">Create</button>
                 </form>

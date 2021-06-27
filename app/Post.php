@@ -17,9 +17,9 @@ class Post extends Model
 
     public function category(){
         return $this->belongsTo('App\Category');
+    }
 
-        foreach ($variable as $key => $value) {
-            # code...
-        }
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
     }
 }

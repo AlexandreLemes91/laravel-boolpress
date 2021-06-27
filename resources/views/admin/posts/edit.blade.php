@@ -35,6 +35,27 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="mt-3">
+                        <label class="form-label d-block" >Tags</label>
+                        @foreach ($tags as $tag)
+                            <span class="mr-3">
+                                <input type="checkbox"
+                                value="{{ $tag->id }}"
+                                name="tags[]"
+                                id="tag{{ $loop->iteration }}"
+                                @if ( $errors->any() && in_array( $tag->id, old('tags', []))) checked
+                                @elseif ( !$errors->any() && $post->tags->contains($tag->id) ) checked
+                                @endif>
+                                <label for="tag{{ $loop->iteration }}">
+                                    {{ $tag->name }}
+                                </label>
+                            </span>
+                        @endforeach
+                        @error('tags')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-secondary mt-3" href="{{ route('admin.posts.update', $post->id) }}">Update</button>
                 </form>
             </div>
