@@ -5,7 +5,7 @@
         <article v-for="post in posts" :key="'post'+post.id">
             <h4>{{ post.title }}</h4>
             <span>{{ date(post.created_at) }}</span>
-            <a href="#">show >></a>
+            <router-link :to="{name:'show', params: { slug: post.slug }}">show >></router-link>
         </article>
 
         <nav>

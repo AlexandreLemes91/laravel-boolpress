@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('Api')->group( function(){
+    //all posts
+    Route::get('posts', 'PostController@index');
 
-    Route::get('/posts', 'PostController@index');
+    Route::get('/posts/{slug}', 'PostController@show');
 });
 
 /* Route::get('test', function(){
@@ -25,6 +27,3 @@ Route::namespace('Api')->group( function(){
     ]);
 }); */
 
-Route::namespace('Api')->group(function(){
-    Route::get('posts', 'PostController@index');
-});
